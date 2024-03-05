@@ -18,9 +18,9 @@ public class Day1 {
         Visitor v4 = new Visitor("Набор суши", 1);
         Visitor v5 = new Visitor("Набор суши", 1);
         Visitor v6 = new Visitor("Набор суши", 1);
-        GroupOfVisitors g1 = new GroupOfVisitors(Arrays.asList(v1, v2), 100, 10);
-        GroupOfVisitors g2 = new GroupOfVisitors(Arrays.asList(v3, v4), 100, 10);
-        GroupOfVisitors g3 = new GroupOfVisitors(Arrays.asList(v5, v6), 100, 20);
+        GroupOfVisitors g1 = new GroupOfVisitors(Arrays.asList(v1, v2), 100, 100);
+        GroupOfVisitors g2 = new GroupOfVisitors(Arrays.asList(v3, v4), 100, 100);
+        GroupOfVisitors g3 = new GroupOfVisitors(Arrays.asList(v5, v6), 100, 200);
         r.serveVisitors(g1);
         r.serveVisitors(g2);
         r.serveVisitors(g3);
