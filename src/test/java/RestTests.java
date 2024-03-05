@@ -115,12 +115,7 @@ public class RestTests {
             int groupSize = r.nextInt(8) + 1;
             groups.add(new GroupOfVisitors(visitors.subList(curInd, groupSize), 100, r.nextInt(200) + 100));
         }
-        int c = 0;
         for (GroupOfVisitors g : groups) {
-            c++;
-            if (c % 100 == 0) {
-                System.out.println("SERVING " + c + " th group");
-            }
             rest.serveVisitors(g);
             Thread.sleep(r.nextInt(10) + 1);
         }
