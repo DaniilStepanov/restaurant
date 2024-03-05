@@ -4,7 +4,7 @@ import java.util.List;
 
 public class GroupOfVisitors {
 
-    private List<Visitor> visitors;
+    public List<Visitor> visitors;
     int maxNoiseLevel;
     int presenceTime;
 
