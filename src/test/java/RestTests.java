@@ -4,6 +4,7 @@ import org.itmo.Restaurant;
 import org.itmo.Visitor;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.Random;
 public class RestTests {
 
     @Test
-    void day1() {
+    void day1() throws IOException {
         Menu m = new Menu();
         Restaurant r = new Restaurant(2, 0, 0);
         Visitor v1 = new Visitor("Паста Карбонара", 1);
@@ -27,17 +28,19 @@ public class RestTests {
         r.serveVisitors(g1);
         r.serveVisitors(g2);
         r.serveVisitors(g3);
+        r.close();
+        System.out.println("TOTAL: " + r.income.get());
     }
 
     @Test
-    void day2() throws InterruptedException {
+    void day2() throws InterruptedException, IOException {
         Random r = new Random(42);
         Menu m = new Menu();
         Restaurant rest = new Restaurant(2, 2, 2);
         List<Visitor> visitors = new ArrayList<Visitor>();
         for (int i = 0; i < 100; i++) {
             int dishIndex = r.nextInt(m.dishes.size());
-            visitors.add(new Visitor(m.dishes.get(dishIndex).getName(), 1));
+            visitors.add(new Visitor(m.getDishByIndex(dishIndex).getName(), 1));
         }
         List<GroupOfVisitors> groups = new ArrayList<>();
         int curInd = 0;
@@ -48,17 +51,19 @@ public class RestTests {
         for (GroupOfVisitors g : groups) {
             rest.serveVisitors(g);
         }
+        rest.close();
+        System.out.println("TOTAL: " + rest.income.get());
     }
 
     @Test
-    void day3() throws InterruptedException {
+    void day3() throws InterruptedException, IOException {
         Random r = new Random(42);
         Menu m = new Menu();
         Restaurant rest = new Restaurant(2, 2, 2);
         List<Visitor> visitors = new ArrayList<Visitor>();
         for (int i = 0; i < 1000; i++) {
             int dishIndex = r.nextInt(m.dishes.size());
-            visitors.add(new Visitor(m.dishes.get(dishIndex).getName(), 1));
+            visitors.add(new Visitor(m.getDishByIndex(dishIndex).getName(), 1));
         }
         List<GroupOfVisitors> groups = new ArrayList<>();
         int curInd = 0;
@@ -70,17 +75,19 @@ public class RestTests {
             rest.serveVisitors(g);
             Thread.sleep(r.nextInt(100) + 1);
         }
+        rest.close();
+        System.out.println("TOTAL: " + rest.income.get());
     }
 
     @Test
-    void day4() throws InterruptedException {
+    void day4() throws InterruptedException, IOException {
         Random r = new Random(42);
         Menu m = new Menu();
         Restaurant rest = new Restaurant(5, 2, 2);
         List<Visitor> visitors = new ArrayList<Visitor>();
         for (int i = 0; i < 10_000; i++) {
             int dishIndex = r.nextInt(m.dishes.size());
-            visitors.add(new Visitor(m.dishes.get(dishIndex).getName(), 1));
+            visitors.add(new Visitor(m.getDishByIndex(dishIndex).getName(), 1));
         }
         List<GroupOfVisitors> groups = new ArrayList<>();
         int curInd = 0;
@@ -96,18 +103,20 @@ public class RestTests {
                 Thread.sleep(r.nextInt(100) + 1);
             }
         }
+        rest.close();
+        System.out.println("TOTAL: " + rest.income.get());
     }
 
 
     @Test
-    void day5() throws InterruptedException {
+    void day5() throws InterruptedException, IOException {
         Random r = new Random(42);
         Menu m = new Menu();
         Restaurant rest = new Restaurant(5, 4, 2);
         List<Visitor> visitors = new ArrayList<>();
         for (int i = 0; i < 50_000; i++) {
             int dishIndex = r.nextInt(m.dishes.size());
-            visitors.add(new Visitor(m.dishes.get(dishIndex).getName(), 1));
+            visitors.add(new Visitor(m.getDishByIndex(dishIndex).getName(), 1));
         }
         List<GroupOfVisitors> groups = new ArrayList<>();
         int curInd = 0;
@@ -119,5 +128,7 @@ public class RestTests {
             rest.serveVisitors(g);
             Thread.sleep(r.nextInt(10) + 1);
         }
+        rest.close();
+        System.out.println("TOTAL: " + rest.income.get());
     }
 }
